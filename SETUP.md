@@ -5,7 +5,7 @@ A GitHub Pages website with a private Google Sheet and Discord member verificati
 ## What is ready
 
 - Responsive Alliance-themed planner, with a clearly labeled fictional sample roster.
-- One editable launch plan per verified Discord user: character name, race, class, preferred role, two primary professions, certainty, and a short note.
+- One editable launch plan per verified Discord user: first and last name, race, class, preferred role, two primary professions, certainty, and a short note.
 - Search, class filter, role totals, and profession coverage.
 - Discord OAuth login, server membership checks on every protected request, optional role restriction.
 - Private Sheet access through Google Apps Script, with concurrent writes locked and spreadsheet formula injection prevented.
@@ -114,3 +114,9 @@ Sources:
 ## Local checks
 
 Run `node tests/backend.test.cjs` and `node --check app.js`. The automated suite exercises backend authorization, OAuth state consumption, owner-derived writes, validation, formula protection, and deletion using mocks. It cannot replace the live OAuth/Apps Script deployment checks.
+
+## First and last names update
+
+The form collects first and last names separately (2–24 characters per part as a planner limit). The Sheet retains its existing `name` column and stores the full name separated by a space, so no schema change is needed. Existing single names remain intact and load into the first-name field; add a surname when next editing. This limit is a planner validation rule, not a claim about the game's naming policy.
+
+After updating the website, replace Code.gs from this repository in Apps Script, then Deploy → Manage deployments → Edit → New version → Deploy. Keep the same deployment URL. This allows full names longer than the old 24-character total limit. Bridge.html and Script properties do not need changes.
