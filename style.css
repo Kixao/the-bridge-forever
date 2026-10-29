@@ -28,3 +28,5 @@
 .roster .tag{margin-bottom:3px;padding:1px 5px}
 .roster-no-note{color:var(--muted)}
 @media(max-width:580px){.roster{padding:16px}}
+
+.roster-status.is-leaning{background:#192e45;border-color:#3c648c;color:#a9d1f5}
