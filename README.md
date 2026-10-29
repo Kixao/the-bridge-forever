@@ -1,5 +1,5 @@
 # The Bridge — Forever Launch Planner
 
-Alliance guild launch planner with Discord verification and private Google Sheets storage.
+Start with [SETUP.md](SETUP.md). Open the website through GitHub Pages or a local HTTP server. Use “Explore a sample roster” before connecting services.
 
-See SETUP.md for configuration. No credentials are committed.
+No secrets are included. Discord login and Google Sheets writes require your own configuration.

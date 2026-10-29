@@ -1,0 +1,5 @@
+dist/
+.openai/
+_site/
+.env
+.env.*

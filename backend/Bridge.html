@@ -1,0 +1,13 @@
+<!doctype html><html><head><meta charset="utf-8"></head><body><script>
+'use strict';
+const allowedOrigin=<?!= originJson ?>,channel=<?!= channelJson ?>;
+const announce=()=>window.top.postMessage({kind:'bridge-ready',channel},allowedOrigin);
+announce();let timer=setInterval(announce,1000);
+window.addEventListener('message',event=>{
+ const msg=event.data;
+ if(event.origin!==allowedOrigin||event.source!==window.top||!msg||msg.kind!=='bridge-request'||msg.channel!==channel||typeof msg.id!=='string')return;
+ clearInterval(timer);
+ const reply=payload=>event.source.postMessage(Object.assign({id:msg.id,channel},payload),allowedOrigin);
+ google.script.run.withSuccessHandler(result=>result&&result.error?reply({ok:false,error:result.error}):reply({ok:true,result})).withFailureHandler(()=>reply({ok:false,error:'The planner could not complete that request. Please try again.'})).dispatch({action:msg.action,data:msg.data,session:msg.session});
+});
+</script></body></html>
